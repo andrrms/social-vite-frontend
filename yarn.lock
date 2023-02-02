@@ -491,6 +491,22 @@
     "@radix-ui/react-primitive" "1.0.1"
     "@radix-ui/react-use-callback-ref" "1.0.0"
 
+"@radix-ui/react-hover-card@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-hover-card/-/react-hover-card-1.0.3.tgz#f055b18e6ffb7fe9e7d29ac54ece05a7571c908c"
+  integrity sha512-rr2+DxPlMhR57IPcNvZ85X8chytdfj7kyVToyR5Ge0r4IJEFiyPs0Cs8/K8oe5zt+yo0F8f29vtC8tNNK+ZIkA==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.0"
+    "@radix-ui/react-compose-refs" "1.0.0"
+    "@radix-ui/react-context" "1.0.0"
+    "@radix-ui/react-dismissable-layer" "1.0.2"
+    "@radix-ui/react-popper" "1.1.0"
+    "@radix-ui/react-portal" "1.0.1"
+    "@radix-ui/react-presence" "1.0.0"
+    "@radix-ui/react-primitive" "1.0.1"
+    "@radix-ui/react-use-controllable-state" "1.0.0"
+
 "@radix-ui/react-id@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-id/-/react-id-1.0.0.tgz#8d43224910741870a45a8c9d092f25887bb6d11e"
@@ -544,6 +560,28 @@
     "@radix-ui/react-use-layout-effect" "1.0.0"
     "@radix-ui/react-use-previous" "1.0.0"
     "@radix-ui/react-visually-hidden" "1.0.1"
+
+"@radix-ui/react-popover@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.0.3.tgz#65ae2ee1fca2d7fd750308549eb8e0857c6160fe"
+  integrity sha512-YwedSukfWsyJs3/yP3yXUq44k4/JBe3jqU63Z8v2i19qZZ3dsx32oma17ztgclWPNuqp3A+Xa9UiDlZHyVX8Vg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.0"
+    "@radix-ui/react-compose-refs" "1.0.0"
+    "@radix-ui/react-context" "1.0.0"
+    "@radix-ui/react-dismissable-layer" "1.0.2"
+    "@radix-ui/react-focus-guards" "1.0.0"
+    "@radix-ui/react-focus-scope" "1.0.1"
+    "@radix-ui/react-id" "1.0.0"
+    "@radix-ui/react-popper" "1.1.0"
+    "@radix-ui/react-portal" "1.0.1"
+    "@radix-ui/react-presence" "1.0.0"
+    "@radix-ui/react-primitive" "1.0.1"
+    "@radix-ui/react-slot" "1.0.1"
+    "@radix-ui/react-use-controllable-state" "1.0.0"
+    aria-hidden "^1.1.1"
+    react-remove-scroll "2.5.5"
 
 "@radix-ui/react-popper@1.1.0":
   version "1.1.0"
@@ -638,6 +676,25 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.0"
+
+"@radix-ui/react-tooltip@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-tooltip/-/react-tooltip-1.0.3.tgz#a8c7e7b2b542cdfe7e94122af79079f7de3f90ff"
+  integrity sha512-cmc9qV4KpgqdXVTn1K8KN8MnuSXvw+E719pKwyvpCGrQ+0AA2qTjcIL3uxCj4jc4k3sDR36RF7R3H7N5hPybBQ==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.0"
+    "@radix-ui/react-compose-refs" "1.0.0"
+    "@radix-ui/react-context" "1.0.0"
+    "@radix-ui/react-dismissable-layer" "1.0.2"
+    "@radix-ui/react-id" "1.0.0"
+    "@radix-ui/react-popper" "1.1.0"
+    "@radix-ui/react-portal" "1.0.1"
+    "@radix-ui/react-presence" "1.0.0"
+    "@radix-ui/react-primitive" "1.0.1"
+    "@radix-ui/react-slot" "1.0.1"
+    "@radix-ui/react-use-controllable-state" "1.0.0"
+    "@radix-ui/react-visually-hidden" "1.0.1"
 
 "@radix-ui/react-use-callback-ref@1.0.0":
   version "1.0.0"
@@ -1104,6 +1161,11 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+clsx@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
+  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
+
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
@@ -1218,6 +1280,13 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+emoji-picker-react@^4.4.7:
+  version "4.4.7"
+  resolved "https://registry.yarnpkg.com/emoji-picker-react/-/emoji-picker-react-4.4.7.tgz#faff798cf7acad41c5eb6b103c93480e777f2222"
+  integrity sha512-HcB1Fr57W6M+gLLm/W4YhbAnUQqYBUAhZBOHmPlSQODLtsDI8vecyqNIF9RrStZHfZwzUSLlpZMfY07AA6gxmA==
+  dependencies:
+    clsx "^1.2.1"
 
 es-abstract@^1.19.0, es-abstract@^1.20.4:
   version "1.21.1"

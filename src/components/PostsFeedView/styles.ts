@@ -20,7 +20,7 @@ export const ViewHeader = styled.header`
 	display: flex;
 	align-items: center;
 
-	border-bottom: 1px solid ${({ theme }) => theme.colors.slate4};
+	// border-bottom: 1px solid ${({ theme }) => theme.colors.slate4};
 	background-color: ${({ theme }) =>
 		theme.colors.slate1.replace(')', ', 0.8)')};
 	backdrop-filter: blur(10px);
@@ -69,3 +69,4 @@ export const NoFollowersSpecialPost = styled.li`
 		}
 	}
 `;
+

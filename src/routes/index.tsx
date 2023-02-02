@@ -10,15 +10,12 @@ export const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <IndexPage />,
-	},
-	{
-		path: '/signin',
-		element: (
-			<>
-				<IndexPage />
-				<SignInFormModal />
-			</>
-		),
+		children: [
+			{
+				path: '/signin',
+				element: <SignInFormModal />,
+			},
+		],
 	},
 	{
 		path: '/home',
@@ -29,3 +26,4 @@ export const router = createBrowserRouter([
 		element: <NotFound />,
 	},
 ]);
+

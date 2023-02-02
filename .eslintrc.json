@@ -16,8 +16,9 @@
 	},
 	"plugins": ["react", "@typescript-eslint"],
 	"rules": {
-		"indent": ["error", "tab"],
-		"linebreak-style": ["error", "windows"],
+		"indent": "off",
+		"@typescript-eslint/indent": ["tab", "error"],
+		"linebreak-style": ["error", "unix"],
 		"quotes": ["error", "single"],
 		"semi": ["error", "always"],
 		"react/react-in-jsx-scope": "off",

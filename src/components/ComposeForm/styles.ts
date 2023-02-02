@@ -1,5 +1,6 @@
 /* eslint-disable indent */
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { ComposeFormProps } from './types';
 
 export const ComposeFormContainer = styled.section`
 	display: flex;
@@ -34,18 +35,21 @@ export const Form = styled.form`
 	}
 `;
 
-export const ComposeTextArea = styled.textarea<{
-	lines?: number;
-	textLength?: number;
-}>`
+export const ComposeTextArea = styled.textarea<
+	ComposeFormProps & {
+		lines?: number;
+		textLength?: number;
+	}
+>`
 	width: 100%;
+	height: 2rem;
 
 	margin-block: 0.5rem;
 	padding-bottom: 0;
 	${({ textLength }) => !!textLength && 'margin-bottom: calc(-1rem + 4px);'}
 
 	border: none;
-	background-color: ${({ theme }) => theme.colors.slate1};
+	background-color: transparent;
 	color: ${({ theme }) => theme.colors.gray12};
 	outline: none;
 
@@ -57,13 +61,26 @@ export const ComposeTextArea = styled.textarea<{
 	${ComposeFormContainer}:focus-within &,
 	${ComposeFormContainer}.hasText & {
 		border-bottom: 1px solid ${({ theme }) => theme.colors.slate4};
+		height: unset;
+		${({ hiddenActions }) => hiddenActions && css``}
 	}
 `;
 
-export const ComposeFormFooter = styled.footer`
+export const ComposeFormFooter = styled.footer<ComposeFormProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	${({ hiddenActions }) =>
+		hiddenActions &&
+		css`
+			display: none;
+
+			${ComposeFormContainer}:focus-within &,
+			${ComposeFormContainer}.hasText & {
+				display: flex;
+			}
+		`}
 `;
 
 export const ComposeFormActions = styled.ul`
@@ -76,6 +93,7 @@ export const ActionButton = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 
 	background-color: transparent;
 	color: ${({ theme }) => theme.colors.blue10};
@@ -93,17 +111,18 @@ export const ActionButton = styled.button`
 `;
 
 // Max length is 180 characters
-export const LengthMeter = styled.div<{ length: number }>`
+export const LengthMeter = styled.div<{ length: number; maxLength?: number }>`
 	display: inline-block;
 	height: 4px;
 	width: 100%;
 	// Rule of thirds to calculate the width of the meter in percentage
-	max-width: ${({ length }) => (length / 180) * 100}%;
+	max-width: ${({ length, maxLength = 180 }) => (length / maxLength) * 100}%;
 
-	background-color: ${({ theme, length }) =>
-		length < 150
+	background-color: ${({ theme, length, maxLength = 180 }) =>
+		length < maxLength - 40 + 1
 			? theme.colors.blue8
-			: length < 170
+			: length < maxLength
 			? theme.colors.yellow8
 			: theme.colors.red8};
 `;
+

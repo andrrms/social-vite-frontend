@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 import { FC } from 'react';
+import { FiChevronDown } from 'react-icons/fi';
 import { useAppTheme } from '../../contexts/AppThemeProvider';
 
 import {
@@ -33,7 +34,7 @@ const AppThemeSelector: FC = () => {
 						? 'do Sistema'
 						: ''}
 				</SelectorValue>
-				<SelectorIcon />
+				<FiChevronDown />
 			</SelectorTrigger>
 
 			<ItemsPortal>
@@ -61,3 +62,4 @@ const AppThemeSelector: FC = () => {
 };
 
 export default AppThemeSelector;
+

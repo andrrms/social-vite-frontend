@@ -22,6 +22,12 @@ export const NavWrapper = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 10px;
+
+	div.wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
 `;
 
 export const LinksList = styled.ul`
@@ -92,7 +98,7 @@ export const BottomContainer = styled.div`
 	margin-top: auto;
 `;
 
-export const UserChip = styled.button`
+export const UserChip = styled.button<{ squared?: boolean }>`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -101,7 +107,7 @@ export const UserChip = styled.button`
 	padding: 0.5rem;
 
 	border: none;
-	border-radius: 3rem;
+	border-radius: ${({ squared }) => (squared ? '14px 3rem 3rem 14px' : '3rem')};
 	background-color: ${({ theme }) => theme.colors.slate1};
 
 	transition: background-color 0.2s;
@@ -114,16 +120,26 @@ export const UserChip = styled.button`
 		display: flex;
 		flex-direction: column;
 
-		p {
+		span.name {
 			display: flex;
 			align-items: center;
-			gap: 0.25rem;
 
-			font-size: 1rem;
-			font-weight: 500;
-			text-align: start;
+			p {
+				display: flex;
+				align-items: center;
+				gap: 0.25rem;
 
-			color: ${({ theme }) => theme.colors.gray12};
+				font-size: 1rem;
+				font-weight: 500;
+				text-align: start;
+
+				color: ${({ theme }) => theme.colors.gray12};
+
+				max-width: 150px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 		}
 
 		span {
@@ -135,3 +151,4 @@ export const UserChip = styled.button`
 		}
 	}
 `;
+

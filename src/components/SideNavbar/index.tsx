@@ -6,6 +6,8 @@ import { useUserSession } from '../../contexts/UserSessionProvider';
 
 import AppLogo from '../AppLogo';
 import AppThemeSelector from '../AppThemeSelector';
+import NewPostDialog from '../NewPostDialog';
+import OfficialBadge from '../OfficialBadge';
 import ThemeButton from '../ThemeButton';
 import UserIcon from '../UserIcon';
 import VerifiedBadge from '../VerifiedBadge';
@@ -23,12 +25,12 @@ import {
 
 const SideNavbar: FC = () => {
 	const { user, logoutUser } = useUserSession();
-	const { fetchPosts } = useFeed();
+	const { fetchPosts, openComposePostDialog } = useFeed();
 
 	return (
 		<SideNavbarContainer>
 			<NavWrapper>
-				<div>
+				<div className="wrapper">
 					<LinksList>
 						<Item>
 							<ItemLink to="/home">
@@ -36,7 +38,16 @@ const SideNavbar: FC = () => {
 							</ItemLink>
 						</Item>
 						<Item>
-							<ItemLink to="/home" onClick={() => fetchPosts()}>
+							<ItemLink
+								to="/home"
+								onClick={() => {
+									fetchPosts();
+									window.scrollTo({
+										top: 0,
+										behavior: 'smooth',
+									});
+								}}
+							>
 								<FiHome /> Página Inicial
 							</ItemLink>
 						</Item>
@@ -47,24 +58,36 @@ const SideNavbar: FC = () => {
 						</Item>
 					</LinksList>
 					<ButtonContainer>
-						<ThemeButton extend primary large>
-							Tweetar
+						<ThemeButton
+							extend
+							primary
+							large
+							onClick={() => openComposePostDialog()}
+						>
+							Nova publicação
 						</ThemeButton>
+						{/* <NewPostDialog></NewPostDialog> */}
 					</ButtonContainer>
 				</div>
 				<BottomContainer>
 					<AppThemeSelector />
-					<UserChip>
+					<UserChip squared={user?.accountType === 'ENTERPRISE'}>
 						<UserIcon
 							src={user?.avatarUrl as string}
 							alt={user?.name as string}
+							squared={user?.accountType === 'ENTERPRISE'}
 							size={44}
 						/>
 						<div>
-							<p>
-								{user?.name}
-								{user?.isVerified && <VerifiedBadge />}
-							</p>
+							<span className="name">
+								<p>{user?.name}</p>
+								<span>
+									{user?.accountType && (
+										<VerifiedBadge type={user?.accountType} />
+									)}
+								</span>
+								{user?.isOfficial && <OfficialBadge />}
+							</span>
 							<span>@{user?.username}</span>
 						</div>
 					</UserChip>
@@ -78,3 +101,4 @@ const SideNavbar: FC = () => {
 };
 
 export default SideNavbar;
+

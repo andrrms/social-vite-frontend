@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import LandingLoginForm from '../../components/LandingLoginForm';
 import LandingMessageBubble from '../../components/LandingMessageBubble';
@@ -19,7 +19,7 @@ const IndexPage: FC = () => {
 		document.title = 'Bluebird - Onde tudo acontece';
 	}, [isAuthenticated]);
 
-	return isAuthenticated ? (
+	return isAuthenticated || !!localStorage.getItem('@app:token') ? (
 		<></>
 	) : (
 		<IndexPageContainer>
@@ -31,8 +31,10 @@ const IndexPage: FC = () => {
 					<LandingLoginForm />
 				</MainView>
 			</Content>
+			<Outlet />
 		</IndexPageContainer>
 	);
 };
 
 export default IndexPage;
+

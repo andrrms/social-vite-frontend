@@ -5,12 +5,17 @@ export interface Post {
 	content: string;
 	likes: number;
 	hasLiked: boolean;
+	hasShared: boolean;
 	shares: number;
+	shared: User[];
 	replies: number;
 	createdAt: string;
 	updatedAt: string;
-	author: User;
+	author: User & {
+		isFollowing?: boolean;
+	};
 	localization?: string;
 	quotingToId?: string;
 	replyingToId?: string;
 }
+

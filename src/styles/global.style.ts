@@ -1,8 +1,15 @@
 import { createGlobalStyle, css } from 'styled-components';
 
+import IE9AppleColorEmoji from '../assets/fonts/apple-color-emoji.ie.eot';
+import Woff2AppleColorEmoji from '../assets/fonts/apple-color-emoji.woff2';
+import WoffAppleColorEmoji from '../assets/fonts/apple-color-emoji.woff';
+import TTFAppleColorEmoji from '../assets/fonts/apple-color-emoji.ttf';
+import SVGAppleColorEmoji from '../assets/fonts/apple-color-emoji.ios6.svg';
+
 export const GlobalStyle = createGlobalStyle<{
 	colorScheme: 'light' | 'dark' | 'system';
 }>`
+
 	html, body, #root {
 		width: 100%;
 		height: 100%;
@@ -105,3 +112,4 @@ export const ContentContainer = css`
 		max-width: 60%;
 	}
 `;
+

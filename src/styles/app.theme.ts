@@ -5,12 +5,14 @@ import {
 	red,
 	green,
 	yellow,
+	brown,
 	slateDark,
 	grayDark,
 	blueDark,
 	redDark,
 	greenDark,
 	yellowDark,
+	brownDark,
 	blackA,
 	whiteA,
 } from '@radix-ui/colors';
@@ -23,6 +25,7 @@ export const colorScheme = {
 		...red,
 		...green,
 		...yellow,
+		...brown,
 		black: blackA,
 		white: whiteA,
 	},
@@ -36,7 +39,9 @@ export const darkColorScheme = {
 		...redDark,
 		...greenDark,
 		...yellowDark,
+		...brownDark,
 		black: blackA,
 		white: whiteA,
 	},
 };
+

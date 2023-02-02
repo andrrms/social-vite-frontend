@@ -1,10 +1,19 @@
+export type AccountType =
+	| 'PAID'
+	| 'VERIFIED'
+	| 'PUBLIC'
+	| 'ENTERPRISE'
+	| 'NONE';
+export type Permission = 'USER' | 'ADMIN';
+
 export interface User {
 	id: string;
 	name: string;
 	username: string;
 	avatarUrl: string;
-	isVerified: boolean;
-	permission: 'USER' | 'ADMIN';
+	accountType: AccountType;
+	isOfficial: boolean;
+	permission: Permission;
 
 	followersCount: number;
 	followingCount: number;
@@ -23,8 +32,9 @@ export interface SearchUser {
 	username: string;
 	avatarUrl: string;
 	isFollowing: boolean;
-	isVerified: boolean;
-	permission: 'USER' | 'ADMIN';
+	accountType: AccountType;
+	isOfficial: boolean;
+	permission: Permission;
 
 	followersCount: number;
 	followingCount: number;
@@ -35,3 +45,4 @@ export interface SearchUser {
 
 	birthDate: string;
 }
+

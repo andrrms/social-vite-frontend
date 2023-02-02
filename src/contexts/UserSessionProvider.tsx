@@ -32,7 +32,7 @@ const mockInicialData: UserSessionContextProps = {
 		birthDate: '',
 		followersCount: 0,
 		followingCount: 0,
-		isVerified: false,
+		accountType: 'NONE',
 		localization: '',
 		permission: 'USER',
 		site: '',
@@ -65,6 +65,7 @@ const UserSessionProvider: FC<PropsWithChildren> = ({ children }) => {
 			.then((response) => {
 				const { token } = response.data;
 				localStorage.setItem('@app:token', token);
+				console.log('[APP] Sessão revalidada');
 			})
 			.catch((e) => {
 				if (e.response.status === 406) {
@@ -143,3 +144,4 @@ const UserSessionProvider: FC<PropsWithChildren> = ({ children }) => {
 };
 
 export default UserSessionProvider;
+

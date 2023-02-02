@@ -9,6 +9,10 @@ export const HomeFeedContainer = styled.div`
 	color: ${({ theme }) => theme.colors.gray12};
 `;
 
+export const NavbarGhostContainer = styled.div`
+	width: 250px;
+`;
+
 export const HomeFeedWrapper = styled.div`
 	width: 100%;
 	height: 100%;
@@ -17,6 +21,7 @@ export const HomeFeedWrapper = styled.div`
 
 	aside {
 		width: 100%;
+		max-width: clamp(290px, 100%, 350px);
 		height: fit-content;
 
 		display: flex;
@@ -74,3 +79,4 @@ export const Emoji = styled.img`
 	height: 1.5rem;
 	line-height: 1.7rem;
 `;
+

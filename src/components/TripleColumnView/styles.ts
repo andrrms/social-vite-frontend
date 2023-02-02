@@ -10,3 +10,4 @@ export const ColumnsViewContainer = styled.div<ColumnsViewProps>`
 		columns === 2 ? '1fr 2fr' : '260px minmax(600px, 1fr) 1fr'};
 	gap: 10px;
 `;
+

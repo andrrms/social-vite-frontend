@@ -2,8 +2,10 @@ import { FC, useState } from 'react';
 import { FiSearch, FiUserPlus, FiUserMinus } from 'react-icons/fi';
 import { useFeed } from '../../contexts/FeedProvider';
 import { useUserSession } from '../../contexts/UserSessionProvider';
+import useInteraction from '../../hooks/useInteraction';
 import { SearchUser } from '../../interfaces/user.interfaces';
 import api from '../../services/api';
+import OfficialBadge from '../OfficialBadge';
 
 import ThemeButton from '../ThemeButton';
 import ThemeInput from '../ThemeInput';
@@ -15,12 +17,13 @@ import { SearchFollowContainer } from './styles';
 const SearchFollow: FC = () => {
 	const { user: sessionUser, revalidateAuthentication } = useUserSession();
 	const { fetchPosts } = useFeed();
+	const { followUser, unfollowUser } = useInteraction();
 	const [searchUsername, setSearchUsername] = useState('');
 	const [users, setUsers] = useState<Partial<SearchUser>[]>([]);
 
-	function handleSearch() {
+	function handleSearch(username?: string) {
 		api
-			.get(`/users/${searchUsername}`, {
+			.get(`/users/search/${username || searchUsername}`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('@app:token')}`,
 				},
@@ -39,49 +42,17 @@ const SearchFollow: FC = () => {
 	}
 
 	function handleFollow(username: string) {
-		api
-			.post(
-				`/interaction/follow/${username}`,
-				{},
-				{
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem('@app:token')}`,
-					},
-				}
-			)
-			.then(({ data }) => {
-				console.log(data);
-				handleSearch();
-			})
-			.catch(async (err) => {
-				if (err.response.status === 401) {
-					await revalidateAuthentication();
-					handleFollow(username);
-				}
-			});
+		followUser(username).then(() => {
+			handleSearch(username);
+			fetchPosts();
+		});
 	}
 
 	function handleUnfollow(username: string) {
-		api
-			.post(
-				`/interaction/unfollow/${username}`,
-				{},
-				{
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem('@app:token')}`,
-					},
-				}
-			)
-			.then(({ data }) => {
-				console.log(data);
-				handleSearch();
-			})
-			.catch(async (err) => {
-				if (err.response.status === 401) {
-					await revalidateAuthentication();
-					handleUnfollow(username);
-				}
-			});
+		unfollowUser(username).then(() => {
+			handleSearch(username);
+			fetchPosts();
+		});
 	}
 
 	return (
@@ -99,21 +70,38 @@ const SearchFollow: FC = () => {
 						}
 					}}
 				/>
-				<ThemeButton primary onClick={handleSearch}>
-					<FiSearch /> <span>Buscar</span>
+				<ThemeButton primary onClick={() => handleSearch()}>
+					<FiSearch />
 				</ThemeButton>
 			</div>
+			{users.length > 0 && (
+				<p
+					style={{
+						marginLeft: '1rem',
+						marginTop: '-0.5rem',
+						fontFamily: '"Inter", "Roboto", sans-serif',
+						fontSize: '0.8rem',
+					}}
+				>
+					Mostrando {users.length > 5 ? 5 : users.length} de {users.length}{' '}
+					resultados
+				</p>
+			)}
 			<ul className="users">
 				{users.map((user) => (
 					<li key={user.id}>
 						<UserIcon
 							src={user.avatarUrl as string}
 							alt={user.name as string}
+							squared={user.accountType === 'ENTERPRISE'}
 						/>
 						<div className="info">
 							<h3>
 								{user.name}
-								{user.isVerified && <VerifiedBadge />}
+								{user.accountType !== 'NONE' && (
+									<VerifiedBadge type={user.accountType || 'NONE'} />
+								)}
+								{user?.isOfficial && <OfficialBadge />}
 								{user.id === sessionUser?.id && (
 									<span className="badge you-badge">Você</span>
 								)}
@@ -145,3 +133,4 @@ const SearchFollow: FC = () => {
 };
 
 export default SearchFollow;
+

@@ -13,3 +13,4 @@ const AppLogo: FC<{ onlyLogo?: boolean }> = ({ onlyLogo }) => {
 };
 
 export default AppLogo;
+

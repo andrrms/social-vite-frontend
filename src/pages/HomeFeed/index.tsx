@@ -3,14 +3,30 @@ import { FC, useEffect } from 'react';
 import SideNavbar from '../../components/SideNavbar';
 import ColumnsView from '../../components/TripleColumnView';
 import PostsFeedView from '../../components/PostsFeedView';
+import SearchFollow from '../../components/SearchFollow';
 
 import InfoEmoji from '../../assets/info-emoji.png';
-import { Emoji, HomeFeedContainer, HomeFeedWrapper } from './styles';
-import SearchFollow from '../../components/SearchFollow';
+import {
+	Emoji,
+	HomeFeedContainer,
+	HomeFeedWrapper,
+	NavbarGhostContainer,
+} from './styles';
+import NewPostDialog from '../../components/NewPostDialog';
 
 const HomeFeed: FC = () => {
 	useEffect(() => {
 		document.title = 'Página Inicial / Bluebird';
+
+		function handleUnload() {
+			alert('Você tem certeza?');
+		}
+
+		document.addEventListener('onbeforeunload', handleUnload);
+
+		return () => {
+			document.removeEventListener('onbeforeunload', handleUnload);
+		};
 	}, []);
 
 	return (
@@ -18,7 +34,8 @@ const HomeFeed: FC = () => {
 			<HomeFeedWrapper>
 				<ColumnsView>
 					<SideNavbar />
-					<div style={{ width: 250 }}></div>
+					<NavbarGhostContainer />
+					<NewPostDialog />
 					<PostsFeedView />
 					<aside>
 						<section>
@@ -47,3 +64,4 @@ const HomeFeed: FC = () => {
 };
 
 export default HomeFeed;
+

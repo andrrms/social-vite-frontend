@@ -1,10 +1,10 @@
 /* eslint-disable indent */
 import { FC, useState } from 'react';
+import { FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import Post from '../Post';
 import ComposeForm from '../ComposeForm';
-import UserIcon from '../UserIcon';
 
 import IllustrationExit from '../../assets/exit-illustration.png';
 import { useFeed } from '../../contexts/FeedProvider';
@@ -51,7 +51,7 @@ const PostsFeedView: FC = () => {
 								usando a barra de pesquisa ao lado.
 							</p>
 							<ThemeButton onClick={handleDismiss}>
-								Não quero saber de amizades, obrigado
+								<FiX /> <span>Não quero saber de amizades, obrigado</span>
 							</ThemeButton>
 						</div>
 					</NoFollowersSpecialPost>
@@ -65,3 +65,4 @@ const PostsFeedView: FC = () => {
 };
 
 export default PostsFeedView;
+

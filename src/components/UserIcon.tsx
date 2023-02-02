@@ -5,13 +5,16 @@ interface UserIconProps {
 	alt: string;
 	src: string;
 	size?: number;
+	squared?: boolean;
 }
 
 const UserIconContainer = styled.figure<Partial<UserIconProps>>`
 	width: ${(props) => props.size}px;
 	height: ${(props) => props.size}px;
+	min-width: ${(props) => props.size}px;
+	min-height: ${(props) => props.size}px;
 
-	border-radius: 50%;
+	border-radius: ${({ squared }) => (squared ? '6px' : '50%')};
 	overflow: hidden;
 
 	display: flex;
@@ -21,13 +24,13 @@ const UserIconContainer = styled.figure<Partial<UserIconProps>>`
 	background-color: ${(props) => props.theme.colors.gray8};
 `;
 
-const Image = styled.img`
+const Image = styled.img<UserIconProps>`
 	width: 100%;
 	height: 100%;
 
 	object-fit: cover;
 
-	border-radius: 50%;
+	border-radius: ${({ squared }) => (squared ? '6px' : '50%')};
 
 	transition: filter 0.2s;
 	&:hover {
@@ -35,12 +38,13 @@ const Image = styled.img`
 	}
 `;
 
-const UserIcon: FC<UserIconProps> = ({ src, alt, size = 46 }) => {
+const UserIcon: FC<UserIconProps> = ({ src, alt, squared, size = 46 }) => {
 	return (
-		<UserIconContainer size={size}>
-			<Image src={src} alt={alt} draggable={false} />
+		<UserIconContainer size={size} squared={squared}>
+			<Image src={src} alt={alt} draggable={false} squared={squared} />
 		</UserIconContainer>
 	);
 };
 
 export default UserIcon;
+
